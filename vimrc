@@ -29,25 +29,12 @@ set showmode
 " enable display (partial) command in the last line
 set showcmd
 
-" enable colorscheme
+" enable a colorscheme:
+" badwolf candycode crispy delek evening github iawriter ir_black jellybeans
+" koehler molokai_deep mustang pyte synic vgod vividchalk
 set t_Co=256
 set background=dark
-"colorscheme badwolf        "ok
-colorscheme candycode      "ok
-"colorscheme crispy         "ok
-"colorscheme delek          "ok
-"colorscheme evening        "ok
-"colorscheme github         "ok
-"colorscheme iawriter       "ok
-"colorscheme ir_black       "ok
-"colorscheme jellybeans     "ok
-"colorscheme koehler        "ok
-"colorscheme molokai_deep   "ok
-"colorscheme mustang        "ok
-"colorscheme pyte           "ok
-"colorscheme synic          "ok
-"colorscheme vgod           "ok
-"colorscheme vividchalk     "ok
+colorscheme candycode
 
 " highlight cursor line
 "set cursorline
@@ -401,16 +388,16 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
+"Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'thinca/vim-quickrun'
 Bundle 'Townk/vim-autoclose'
 Bundle 'ervandew/supertab'
-Bundle 'benmills/vimux'
+"Bundle 'benmills/vimux'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'kien/ctrlp.vim'
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
+"Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 " bundle vim-scripts repos
 Bundle 'L9'
@@ -421,7 +408,7 @@ Bundle 'matchit.zip'
 filetype plugin indent on
 " VUNDLE END
 
-" Powerline
+" Vim-Powerline
 set laststatus=2
 set statusline=%<%f\                    " custom statusline
 set statusline+=[%{&ff}]                " show fileformat
@@ -437,5 +424,8 @@ set shortmess=atI
 "autocmd VimEnter * wincmd w
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 noremap <silent> <leader>nt :NERDTree<CR>
+
+" Vim-Gitgutter
+highlight clear SignColumn
 
 " End of Configuration
