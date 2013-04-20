@@ -432,6 +432,7 @@ set shortmess=atI
 
 " Vim-Gitgutter
 highlight clear SignColumn
+let g:gitgutter_sign_column_always = 1
 noremap <silent> <leader>gt :GitGutterToggle<CR> 
 
 " End of Configuration
