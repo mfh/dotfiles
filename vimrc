@@ -36,6 +36,9 @@ set t_Co=256
 set background=dark
 colorscheme candycode
 
+" highlight non-text/showbreak chars
+"highlight NonText ctermfg=bg
+
 " highlight cursor line
 "set cursorline
 "highlight CursorLine cterm=bold ctermbg=236
@@ -380,14 +383,14 @@ call vundle#rc()
 " Vundle manages other bundles
 Bundle 'gmarik/vundle'
 
-" bundle github repos
+" Github.com repos
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'Lokaltog/vim-easymotion'
@@ -399,7 +402,7 @@ Bundle 'airblade/vim-gitgutter'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
-" bundle vim-scripts repos
+" Vim.org repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'bufexplorer.zip'
@@ -407,6 +410,15 @@ Bundle 'matchit.zip'
 
 filetype plugin indent on
 " VUNDLE END
+
+" NERDTree
+noremap <silent> <leader>nt :NERDTreeToggle<CR>
+
+" NERDTreeTabs
+"autocmd VimEnter * NERDTreeTabsOpen
+"autocmd BufEnter * NERDTreeMirrorOpen
+"autocmd VimEnter * wincmd w
+noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
 
 " Vim-Powerline
 set laststatus=2
@@ -418,14 +430,8 @@ let g:Powerline_theme="default"
 let g:Powerline_colorscheme="default"
 set shortmess=atI
 
-" NERDTree
-"autocmd VimEnter * NERDTreeTabsOpen
-"autocmd BufEnter * NERDTreeMirrorOpen
-"autocmd VimEnter * wincmd w
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-noremap <silent> <leader>nt :NERDTree<CR>
-
 " Vim-Gitgutter
 highlight clear SignColumn
+noremap <silent> <leader>gt :GitGutterToggle<CR> 
 
 " End of Configuration
