@@ -1,4 +1,4 @@
-" Vim Configuration (update: 20/04/2013)
+" Vim Configuration (update: 21/04/2013)
 
 " focus using vim
 set nocompatible
@@ -9,8 +9,8 @@ set noerrorbells visualbell t_vb=
 set termencoding=utf-8
 set encoding=utf-8
 
-" disable update the display while executing macros
-set lazyredraw
+" enable lazy redraw screen and fast tty output
+"set lazyredraw
 set ttyfast
 
 " disable write swap file
@@ -395,18 +395,18 @@ Bundle 'tpope/vim-repeat'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'Lokaltog/vim-easymotion'
 Bundle 'thinca/vim-quickrun'
-Bundle 'Townk/vim-autoclose'
 Bundle 'ervandew/supertab'
 "Bundle 'benmills/vimux'
+Bundle 'rson/vim-conque'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'kien/ctrlp.vim'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 " Vim.org repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'bufexplorer.zip'
-Bundle 'matchit.zip'
 
 filetype plugin indent on
 " VUNDLE END
