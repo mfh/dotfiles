@@ -1,60 +1,60 @@
-" Vim Configuration (update: 21/04/2013)
+" Vim Configuration (update: 22/04/2013)
 
-" focus using vim
+" enable no-compatibility with old vi
 set nocompatible
 set nomodeline
 set noerrorbells visualbell t_vb=
 
 " enable unicode encoding
-set termencoding=utf-8
 set encoding=utf-8
+set termencoding=utf-8
 
-" enable lazy redraw screen and fast tty output
-"set lazyredraw
+" enable fast tty output and lazy screen redraw 
 set ttyfast
+"set lazyredraw
 
-" disable write swap file
+" disable writing swap file
 set nobackup
 set noswapfile
 
 " enable mouse
 set mouse=a
 
-" enable display info line and column
+" enable display info ruler
 set ruler
 
 " enable display info current modes
 set showmode
 
-" enable display (partial) command in the last line
+" enable display (partial) command
 set showcmd
 
-" enable a colorscheme:
-" badwolf candycode crispy delek evening github iawriter ir_black jellybeans
-" koehler molokai_deep mustang pyte synic vgod vividchalk
+" enable a colors scheme, list:
+" badwolf candycode crispy delek evening github iawriter ir_black
+" jellybeans koehler molokai_deep mustang pyte synic vgod vividchalk
 set t_Co=256
-set background=dark
-colorscheme candycode
+set background=light
+colorscheme synic
 
-" highlight non-text/showbreak chars
+" enable highlight non-text/showbreak chars
 "highlight NonText ctermfg=bg
 
-" highlight cursor line
-"set cursorline
-"highlight CursorLine cterm=bold ctermbg=236
+" enable highlight cursor current line
+set cursorline
+highlight CursorLine cterm=bold ctermbg=236
 
-" highlight text column
-"let &colorcolumn=join(range(76,80),",")    " avar. length of english words is 5 chars
+" enable highlight columns (avar. length of english words is 5 char)
+"let &colorcolumn=join(range(76,80),",")
 "autocmd BufEnter * highlight ColorColumn ctermbg=237 guibg=#2c2d27
 
-" highlight overlength text 
+" enable highlight overlength lines
 "autocmd BufEnter,BufRead * highlight OverLength ctermfg=lightgreen
 "autocmd BufEnter,BufRead * match OverLength /\%81v.\+/
 
-" change the mapleader from "\" to "," key
+" change mapleader key from "\" to ","
 let g:mapleader=","
 
-" required to be able to use keypad keys and map missed escape sequences
+" required to be able to use keypad keys & map missed escape sequences
 set esckeys
 
 " enable wrapping lines
@@ -97,8 +97,8 @@ noremap <silent> <leader>nhl :set nohlsearch<CR>
 " enable treat all numerals as decimal
 set nrformats=
 
-" enable to keep 7 lines off the edges of the screen when scrolling
-set scrolloff=2
+" enable to keep n lines off the edges of the screen when scrolling
+set scrolloff=5
 
 " enable cursor to go in to "invalid" places
 set virtualedit=block
@@ -109,8 +109,6 @@ set backspace=indent,eol,start
 " enable completion longest common string, then each full match
 set wildmenu
 set wildmode=list:full
-
-" enable completion menu
 set completeopt+=preview
 
 " hide buffers instead closing them & reveal already opened files
@@ -197,9 +195,9 @@ let myterm = substitute(myterm, "vt1[0-9][0-9].*$",   "vt100", "")
 let myterm = substitute(myterm, "vt2[0-9][0-9].*$",   "vt220", "")
 let myterm = substitute(myterm, "\\([^-]*\\)[_-].*$", "\\1",   "")
 
-" Here we define the keys of the NumLock in keyboard transmit mode of xterm
-" which misses or has not activated Alt/NumLock Modifiers. Often not defined
-" within termcap/terminfo and we should map the character printed on the keys.
+" here we define the keys of the NumLock in keyboard transmit mode of xterm
+" which misses or has not activated Alt/NumLock Modifiers, often not defined
+" within termcap/terminfo and we should map the character printed on the keys
 if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     " keys in insert/command mode
     map! <ESC>Oo  :
@@ -239,8 +237,8 @@ if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     map <ESC>On  .
 endif
 
-" Xterm but without activated keyboard transmit mode
-" and therefore not defined in termcap/terminfo.
+" xterm but without activated keyboard transmit mode
+" and therefore not defined in termcap/terminfo
 if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     " keys in insert/command mode.
     map! <Esc>[H  <Home>
@@ -270,8 +268,8 @@ if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     map <ESC>[E  i
 endif
 
-" Xterm/kvt but with activated keyboard transmit mode
-" Sometimes not or wrong defined within termcap/terminfo.
+" xterm/kvt but with activated keyboard transmit mode
+" sometimes not or wrong defined within termcap/terminfo
 if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     " keys in insert/command mode
     map! <Esc>OH <Home>
@@ -369,8 +367,8 @@ if myterm == "screen"
     map! <ESC>[6;3~ <PageDown>
 endif
 
-" This escape sequence is the well known ANSI sequence for
-" Remove Character Under The Cursor (RCUTC[tm]).
+" this escape sequence is the well known ANSI sequence for
+" Remove Character Under The Cursor (RCUTC)
 map! <Esc>[3~ <Delete>
 map  <ESC>[3~    x
 
@@ -385,28 +383,28 @@ Bundle 'gmarik/vundle'
 
 " Github.com repos
 Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'tpope/vim-markdown'
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'Lokaltog/vim-easymotion'
-Bundle 'thinca/vim-quickrun'
-Bundle 'ervandew/supertab'
-"Bundle 'benmills/vimux'
-Bundle 'rson/vim-conque'
-Bundle 'airblade/vim-gitgutter'
 "Bundle 'kien/ctrlp.vim'
-"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'LaTeX-Box-Team/LaTeX-Box'
+Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/supertab'
+"Bundle 'Townk/vim-autoclose'
+"Bundle 'rson/vim-conque'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
+"Bundle 'tpope/vim-markdown'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'thinca/vim-quickrun'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+"Bundle 'benmills/vimux'
 
 " Vim.org repos
 Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'bufexplorer.zip'
+Bundle 'FuzzyFinder'
 
 filetype plugin indent on
 " VUNDLE END
@@ -414,7 +412,7 @@ filetype plugin indent on
 " NERDTree
 noremap <silent> <leader>nt :NERDTreeToggle<CR>
 
-" NERDTreeTabs
+" Vim-NERDTree-Tabs
 "autocmd VimEnter * NERDTreeTabsOpen
 "autocmd BufEnter * NERDTreeMirrorOpen
 "autocmd VimEnter * wincmd w
@@ -431,7 +429,9 @@ let g:Powerline_colorscheme="default"
 set shortmess=atI
 
 " Vim-Gitgutter
+let g:gitgutter_enabled = 0
+let g:gitgutter_eager = 0
 highlight clear SignColumn
-noremap <silent> <leader>gt :highlight clear SignColumn <Bar> GitGutterToggle<CR> 
+noremap <silent> <leader>gt :highlight clear SignColumn <Bar> GitGutterToggle<CR>
 
 " End of Configuration
