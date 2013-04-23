@@ -1,61 +1,57 @@
-" Vim Configuration (update: 22/04/2013)
+" Vim Configuration (update: 23/04/2013)
 
-" enable no-compatibility with old vi
+" enable no-compatibility with Vi
 set nocompatible
-set nomodeline
-set noerrorbells visualbell t_vb=
+
+" enable posix compliance
+let g:is_posix = 1
+
+" enable mapleader key
+let g:mapleader = ","
 
 " enable unicode encoding
 set encoding=utf-8
 set termencoding=utf-8
 
-" enable fast tty output and lazy screen redraw 
-set ttyfast
-"set lazyredraw
+" disable modeline and error bell
+set nomodeline
+set noerrorbells visualbell t_vb=
 
-" disable writing swap file
+" disable write backup and swap file
 set nobackup
 set noswapfile
+
+" enable display info ruler and current mode
+set ruler
+set showmode
+
+" enable display info message and line status
+set shortmess=atI
+set laststatus=2
+set statusline=%<%f\                " custom statusline for Powerline
+set statusline+=[%{&ff}]            " show fileformat
+set statusline+=%y%m%r%=
+set statusline+=%-14.(%l,%c%V%)\ %P
+
+" enable fast terminal output
+set ttyfast
+
+" enable automatic reading
+set autoread
 
 " enable mouse
 set mouse=a
 
-" enable display info ruler
-set ruler
-
-" enable display info current modes
-set showmode
-
-" enable display (partial) command
-set showcmd
-
-" enable a colors scheme, list:
-" badwolf candycode crispy delek evening github iawriter ir_black
-" jellybeans koehler molokai_deep mustang pyte synic vgod vividchalk
+" enable a colors scheme:
+"   badwolf candycode crispy delek evening github iawriter ir_black
+"   jellybeans koehler molokai_deep mustang pyte synic vgod vividchalk
 set t_Co=256
-set background=light
+set background=dark
 colorscheme synic
 
-" enable highlight non-text/showbreak chars
-"highlight NonText ctermfg=bg
-
-" enable highlight cursor current line
+" enable highlight cursor
 set cursorline
-highlight CursorLine cterm=bold ctermbg=236
-
-" enable highlight columns (avar. length of english words is 5 char)
-"let &colorcolumn=join(range(76,80),",")
-"autocmd BufEnter * highlight ColorColumn ctermbg=237 guibg=#2c2d27
-
-" enable highlight overlength lines
-"autocmd BufEnter,BufRead * highlight OverLength ctermfg=lightgreen
-"autocmd BufEnter,BufRead * match OverLength /\%81v.\+/
-
-" change mapleader key from "\" to ","
-let g:mapleader=","
-
-" required to be able to use keypad keys & map missed escape sequences
-set esckeys
+highlight CursorLine cterm=bold ctermbg=237
 
 " enable wrapping lines
 set wrap linebreak textwidth=0      " soft-wrap text to the size of window
@@ -63,36 +59,28 @@ set whichwrap+=<,>,[,],h,l          " allow backspace and cursor keys to wrap
 set breakat=\ \|@-+;:,./?^I
 
 " enable tab with spaces
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set smarttab
 
 " enable automatically indent lines
 set smartindent
 
-" enable paste without autoindent
-set pastetoggle=<F2>
+" enable backspacing over everything in insert mode
+set backspace=indent,eol,start
 
 " enable case-insensitive search
 set ignorecase
 set smartcase
-
-" enable options search results
 set hlsearch
 set incsearch
 set gdefault
-
-" enable change special characters in search patterns
-set magic
+set magic                           " change special characters in search patterns
 
 " enable show matching brackets
 set showmatch
-
-" toggle highlighting search
-noremap <silent> <leader>hl :set hlsearch<CR>
-noremap <silent> <leader>nhl :set nohlsearch<CR>
 
 " enable treat all numerals as decimal
 set nrformats=
@@ -100,11 +88,8 @@ set nrformats=
 " enable to keep n lines off the edges of the screen when scrolling
 set scrolloff=5
 
-" enable cursor to go in to "invalid" places
+" enable cursor to go in to invalid places
 set virtualedit=block
-
-" enable backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 " enable completion longest common string, then each full match
 set wildmenu
@@ -119,11 +104,11 @@ set switchbuf=useopen,usetab
 set splitbelow
 set splitright
 
-" enable remember more commands history and undo level
-set history=1700
-set undolevels=1700
+" enable remember more command history and undo level
+set history=1000
+set undolevels=1000
 
-" enable move keys operate on display lines
+" enable motion keys operate on display lines
 noremap  <buffer> <silent> k gk
 noremap  <buffer> <silent> j gj
 noremap  <buffer> <silent> 0 g0
@@ -134,6 +119,19 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+" enable shortcut to split line
+nnoremap <silent> <C-J> gEa<CR><ESC>ew
+
+" enable shortcut to normal mode
+inoremap kk <Esc>`^
+inoremap jj <Esc>`^
+
+" toggle paste without auto indent
+set pastetoggle=<F2>
+
+" toggle highlighting search
+nmap <silent> <F3> :set nohlsearch!<CR>
 
 " toggle spell checking
 nmap <silent> <F7> :set spell!<CR>
@@ -148,19 +146,15 @@ nmap <silent> <F8> :if exists("g:syntax_on") <Bar>
 " toggle show line number
 nmap <silent> <F9> :set number!<CR>
 
-" enable add newline without enter insert mode
+" shortcut to add newline without enter insert mode
 nmap <silent> <F10> O<Esc>
 nmap <silent> <F11> o<Esc>
 
-" enable display unprintable characters
+" toggle display unprintable characters
 set listchars=tab:▸-,eol:¬
 set listchars+=trail:·
 set listchars+=extends:»,precedes:«
 nmap <silent> <F12> :set list!<CR>
-
-" enable quick normal mode switch
-inoremap jj <Esc>`^
-inoremap kk <Esc>`^
 
 " enable autoreload vimrc that already edited (or manually: ":so %")
 map <leader>vimrc :tabedit $MYVIMRC<CR>
@@ -184,8 +178,6 @@ endif
 " try to get the correct main terminal type
 if &term =~ "xterm"
     let myterm = "xterm"
-elseif &term =~ "screen"
-    let myterm = "screen"
 else
     let myterm =  &term
 endif
@@ -334,39 +326,6 @@ if myterm == "linux"
     map <ESC>[G  i
 endif
 
-if myterm == "screen"
-    map! <ESC>[1;2D <S-Left>
-    map! <ESC>[1;2C <S-Right>
-    map! <ESC>[1;2A <S-Up>
-    map! <ESC>[1;2B <S-Down>
-    map! <ESC>[1;2H <Home>
-    map! <ESC>[1;2F <End>
-    map! <ESC>[2;2~ <Insert>
-    map! <ESC>[3;2~ <Delete>
-    map! <ESC>[5;2~ <PageUp>
-    map! <ESC>[6;2~ <PageDown>
-    map! <ESC>[1;5D <C-Left>
-    map! <ESC>[1;5C <C-Right>
-    map! <ESC>[1;5A <C-Up>
-    map! <ESC>[1;5B <C-Down>
-    map! <ESC>[1;5H <Home>
-    map! <ESC>[1;5F <End>
-    map! <ESC>[2;5~ <Insert>
-    map! <ESC>[3;5~ <Delete>
-    map! <ESC>[5;5~ <PageUp>
-    map! <ESC>[6;5~ <PageDown>
-    map! <ESC>[1;3D <A-Left>
-    map! <ESC>[1;3C <A-Right>
-    map! <ESC>[1;3A <A-Up>
-    map! <ESC>[1;3B <A-Down>
-    map! <ESC>[1;3H <Home>
-    map! <ESC>[1;3F <End>
-    map! <ESC>[2;3~ <Insert>
-    map! <ESC>[3;3~ <Delete>
-    map! <ESC>[5;3~ <PageUp>
-    map! <ESC>[6;3~ <PageDown>
-endif
-
 " this escape sequence is the well known ANSI sequence for
 " Remove Character Under The Cursor (RCUTC)
 map! <Esc>[3~ <Delete>
@@ -378,28 +337,19 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Vundle manages other bundles
+" Vundle manages other plugins
 Bundle 'gmarik/vundle'
 
 " Github.com repos
 Bundle 'mileszs/ack.vim'
-"Bundle 'kien/ctrlp.vim'
-"Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/nerdcommenter'
-Bundle 'ervandew/supertab'
-"Bundle 'Townk/vim-autoclose'
-"Bundle 'rson/vim-conque'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'airblade/vim-gitgutter'
-"Bundle 'tpope/vim-markdown'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-"Bundle 'benmills/vimux'
 
 " Vim.org repos
 Bundle 'L9'
@@ -413,25 +363,15 @@ filetype plugin indent on
 noremap <silent> <leader>nt :NERDTreeToggle<CR>
 
 " Vim-NERDTree-Tabs
-"autocmd VimEnter * NERDTreeTabsOpen
-"autocmd BufEnter * NERDTreeMirrorOpen
-"autocmd VimEnter * wincmd w
 noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
 
 " Vim-Powerline
-set laststatus=2
-set statusline=%<%f\                    " custom statusline
-set statusline+=[%{&ff}]                " show fileformat
-set statusline+=%y%m%r%=
-set statusline+=%-14.(%l,%c%V%)\ %P
-let g:Powerline_theme="default"
-let g:Powerline_colorscheme="default"
-set shortmess=atI
+let g:Powerline_theme = "default"
+let g:Powerline_colorscheme = "solarized256"
 
 " Vim-Gitgutter
 let g:gitgutter_enabled = 0
 let g:gitgutter_eager = 0
-highlight clear SignColumn
 noremap <silent> <leader>gt :highlight clear SignColumn <Bar> GitGutterToggle<CR>
 
 " End of Configuration
