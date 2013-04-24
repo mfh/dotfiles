@@ -1,4 +1,4 @@
-" Vim Configuration (update: 23/04/2013)
+" Vim Configuration (update: 24/04/2013)
 
 " enable no-compatibility with Vi
 set nocompatible
@@ -46,8 +46,9 @@ set mouse=a
 "   badwolf candycode crispy delek evening github iawriter ir_black
 "   jellybeans koehler molokai_deep mustang pyte synic vgod vividchalk
 set t_Co=256
-set background=dark
-colorscheme synic
+autocmd ColorScheme * highlight Normal ctermbg=NONE
+autocmd ColorScheme * highlight LineNr ctermbg=NONE
+colorscheme jellybeans
 
 " enable highlight cursor
 set cursorline
@@ -120,12 +121,20 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" enable shortcut to split line
+" enable shortcut to split line and change dir
 nnoremap <silent> <C-J> gEa<CR><ESC>ew
+nnoremap <silent> <leader>cd :lcd %:h<CR>:pwd<CR>
 
 " enable shortcut to normal mode
 inoremap kk <Esc>`^
 inoremap jj <Esc>`^
+
+" enable single insert from normal mode
+function! RepeatChar(char, count)
+   return repeat(a:char, a:count)
+endfunction
+nnoremap <silent> s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 " toggle paste without auto indent
 set pastetoggle=<F2>
@@ -133,15 +142,29 @@ set pastetoggle=<F2>
 " toggle highlighting search
 nmap <silent> <F3> :set nohlsearch!<CR>
 
+" toggle columns color
+function! ToggleColorColumn()
+  if &colorcolumn != ''
+    setlocal colorcolumn&
+  else
+    let &l:colorcolumn=join(range(76,80),",") | setlocal colorcolumn
+    highlight colorcolumn ctermbg=236
+  endif
+endfunction
+nmap <silent> <F6> :call ToggleColorColumn()<CR>
+
 " toggle spell checking
 nmap <silent> <F7> :set spell!<CR>
 
 " toggle syntax highlight
-nmap <silent> <F8> :if exists("g:syntax_on") <Bar>
-    \   syntax off <Bar>
-    \ else <Bar>
-    \   syntax enable <Bar>
-    \ endif <CR>
+function! ToggleSyntax()
+  if exists("g:syntax_on")
+    syntax off
+  else
+    syntax enable
+  endif
+endfunction
+nmap <silent> <F8> :call ToggleSyntax()<CR>
 
 " toggle show line number
 nmap <silent> <F9> :set number!<CR>
@@ -157,15 +180,7 @@ set listchars+=extends:»,precedes:«
 nmap <silent> <F12> :set list!<CR>
 
 " enable autoreload vimrc that already edited (or manually: ":so %")
-map <leader>vimrc :tabedit $MYVIMRC<CR>
 autocmd bufwritepost .vimrc source $MYVIMRC
-
-" enable single insert from normal mode
-function! RepeatChar(char, count)
-   return repeat(a:char, a:count)
-endfunction
-nnoremap <silent> s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
-nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 " enable cursor jump to the last known position
 if has("autocmd")
@@ -366,8 +381,8 @@ noremap <silent> <leader>nt :NERDTreeToggle<CR>
 noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
 
 " Vim-Powerline
-let g:Powerline_theme = "default"
-let g:Powerline_colorscheme = "solarized256"
+let g:Powerline_theme = "sanity"
+let g:Powerline_colorscheme = "sanity"
 
 " Vim-Gitgutter
 let g:gitgutter_enabled = 0
