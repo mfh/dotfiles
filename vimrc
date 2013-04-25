@@ -1,4 +1,4 @@
-" Vim Configuration (update: 24/04/2013)
+" Vim Configuration (update: 25/04/2013)
 
 " enable no-compatibility with Vi
 set nocompatible
@@ -46,8 +46,6 @@ set mouse=a
 "   badwolf candycode crispy delek evening github iawriter ir_black
 "   jellybeans koehler molokai_deep mustang pyte synic vgod vividchalk
 set t_Co=256
-autocmd ColorScheme * highlight Normal ctermbg=NONE
-autocmd ColorScheme * highlight LineNr ctermbg=NONE
 colorscheme jellybeans
 
 " enable highlight cursor
@@ -65,9 +63,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set smarttab
-
-" enable automatically indent lines
-set smartindent
 
 " enable backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -148,7 +143,7 @@ function! ToggleColorColumn()
     setlocal colorcolumn&
   else
     let &l:colorcolumn=join(range(76,80),",") | setlocal colorcolumn
-    highlight colorcolumn ctermbg=236
+    highlight colorcolumn ctermbg=237
   endif
 endfunction
 nmap <silent> <F6> :call ToggleColorColumn()<CR>
@@ -275,7 +270,7 @@ if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     map <ESC>[E  i
 endif
 
-" xterm/kvt but with activated keyboard transmit mode
+" xterm but with activated keyboard transmit mode and
 " sometimes not or wrong defined within termcap/terminfo
 if myterm == "xterm" || myterm == "kvt" || myterm == "gnome"
     " keys in insert/command mode
@@ -346,47 +341,7 @@ endif
 map! <Esc>[3~ <Delete>
 map  <ESC>[3~    x
 
-" VUNDLE START
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Vundle manages other plugins
-Bundle 'gmarik/vundle'
-
-" Github.com repos
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-
-" Vim.org repos
-Bundle 'L9'
-Bundle 'bufexplorer.zip'
-Bundle 'FuzzyFinder'
-
-filetype plugin indent on
-" VUNDLE END
-
-" NERDTree
-noremap <silent> <leader>nt :NERDTreeToggle<CR>
-
-" Vim-NERDTree-Tabs
-noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
-
-" Vim-Powerline
-let g:Powerline_theme = "sanity"
-let g:Powerline_colorscheme = "sanity"
-
-" Vim-Gitgutter
-let g:gitgutter_enabled = 0
-let g:gitgutter_eager = 0
-noremap <silent> <leader>gt :highlight clear SignColumn <Bar> GitGutterToggle<CR>
+" plugin configurations
+source ~/.vim/bundle/plugins.vim
 
 " End of Configuration
