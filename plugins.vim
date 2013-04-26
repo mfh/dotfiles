@@ -1,4 +1,4 @@
-" Plugins Configuration (update: 25/04/2013)
+" Plugins Configuration (update: 27/04/2013)
 
 " VUNDLE START
 filetype off
@@ -9,15 +9,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github.com repos
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'justincampbell/vim-eighties'
-Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'thinca/vim-quickrun'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 
@@ -29,14 +28,13 @@ Bundle 'FuzzyFinder'
 filetype plugin indent on
 " VUNDLE END
 
-" Ack
-noremap <leader>f :Ack<space>
-
 " NERDTree
 noremap <silent> <leader>nt :NERDTreeToggle<CR>
 
-" Vim-Eighties
-let g:eighties_extra_width = 7
+" Syntastic
+let g:syntastic_mode_map = { "mode": "passive" }
+let g:syntastic_quiet_warnings = 1
+let g:syntastic_enable_highlighting = 0
 
 " Vim-Fugitive
 noremap <silent> <leader>gs :Gstatus<cr>
@@ -49,7 +47,7 @@ noremap <silent> <leader>gb :Gblame<cr>
 " Vim-Gitgutter
 let g:gitgutter_enabled = 0
 let g:gitgutter_eager = 0
-noremap <silent> <leader>gg :highlight clear SignColumn <Bar> GitGutterToggle<CR>
+noremap <silent> <leader>gt :GitGutterToggle<CR>
 
 " Vim-NERDTree-Tabs
 noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
