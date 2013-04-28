@@ -1,17 +1,16 @@
-" Plugins Configuration (update: 27/04/2013)
+" Plugins Configuration (update: 28/04/2013)
 
-" VUNDLE START
+" ----- 
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Vundle manages other plugins
+" github.com
 Bundle 'gmarik/vundle'
-
-" Github.com repos
 Bundle 'airblade/vim-gitgutter'
-Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -19,14 +18,15 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-
-" Vim.org repos
-Bundle 'L9'
+Bundle 'wikitopian/hardmode'
+" vim.org
 Bundle 'bufexplorer.zip'
-Bundle 'FuzzyFinder'
 
 filetype plugin indent on
-" VUNDLE END
+" -----
+
+" Hardmode
+noremap <silent> <leader>hm :call ToggleHardMode()<CR>
 
 " NERDTree
 noremap <silent> <leader>nt :NERDTreeToggle<CR>
@@ -35,22 +35,23 @@ noremap <silent> <leader>nt :NERDTreeToggle<CR>
 let g:syntastic_mode_map = { "mode": "passive" }
 let g:syntastic_quiet_warnings = 1
 let g:syntastic_enable_highlighting = 0
+noremap <silent> <leader>sc :SyntasticCheck<CR>
+
+" Tagbar
+noremap <silent> <leader>tc :TagbarToggle<cr>
 
 " Vim-Fugitive
-noremap <silent> <leader>gs :Gstatus<cr>
-noremap <silent> <leader>gc :Gcommit<cr>
-noremap <silent> <leader>ga :Gwrite<cr>
-noremap <silent> <leader>gl :Glog<cr>
-noremap <silent> <leader>gd :Gdiff<cr>
-noremap <silent> <leader>gb :Gblame<cr>
+noremap <leader>gs :Gstatus<cr>
+noremap <leader>gc :Gcommit<cr>
+noremap <leader>ga :Gwrite<cr>
+noremap <leader>gl :Glog<cr>
+noremap <leader>gd :Gdiff<cr>
+noremap <leader>gb :Gblame<cr>
 
 " Vim-Gitgutter
 let g:gitgutter_enabled = 0
 let g:gitgutter_eager = 0
 noremap <silent> <leader>gt :GitGutterToggle<CR>
-
-" Vim-NERDTree-Tabs
-noremap <silent> <Leader>nb :NERDTreeTabsToggle<CR>
 
 " Vim-Powerline
 let g:Powerline_theme = "sanity"

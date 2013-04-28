@@ -74,12 +74,13 @@ set magic                           " change special characters in search patter
 
 " enable show matching brackets
 set showmatch
+set matchtime=2
 
 " enable treat all numerals as decimal
 set nrformats=
 
-" enable to keep n lines off the edges of the screen when scrolling
-set scrolloff=5
+" enable to keep n lines off the edges when scrolling
+set scrolloff=4
 
 " enable cursor to go in to invalid places
 set virtualedit=block
@@ -98,8 +99,8 @@ set splitbelow
 set splitright
 
 " enable remember more command history and undo level
-set history=1000
-set undolevels=1000
+set history=1100
+set undolevels=1100
 
 " enable motion keys operate on display lines
 noremap  <buffer> <silent> k gk
@@ -110,12 +111,11 @@ noremap  <buffer> <silent> $ g$
 " enable shortcut to switch buffer
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
 
-" enable shortcut to split line and change dir
-nnoremap <silent> <C-J> gEa<CR><ESC>ew
+" enable shortcut to split line, change dir, and create ctags
+nnoremap <silent> <leader>j gEa<CR><ESC>ew
 nnoremap <silent> <leader>cd :lcd %:h<CR>:pwd<CR>
+nnoremap <silent> <leader>ct :!ctags -R .<cr><cr>
 
 " enable shortcut to normal mode
 inoremap kk <Esc>`^
