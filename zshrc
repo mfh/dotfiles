@@ -1,14 +1,21 @@
 # ZSH Configuration (update: 28/04/2013)
 
-# Basics
+# Common
 HISTFILE=~/.histfile
 HISTSIZE=170000
 SAVEHIST=17000
 setopt sharehistory appendhistory extendedhistory histignoredups histverify
 setopt autocd autopushd pushdminus pushdsilent pushdtohome pushdignoredups
-setopt extendedglob globdots 
-setopt nobeep ignoreeof
-setopt promptsubst
+setopt noautoremoveslash noautomenu noclobber nobeep
+setopt promptsubst noalwayslastprompt
+setopt correct dvorak ignoreeof
+
+# Completions
+setopt completeinword recexact alwaystoend
+setopt extendedglob globdots
+setopt listtypes listpacked
+compctl -c .
+unlimit
 
 # Load modules
 autoload -Uz compinit promptinit zsh-mime-setup edit-command-line vcs_info
@@ -17,11 +24,12 @@ autoload -Uz compinit promptinit zsh-mime-setup edit-command-line vcs_info
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr ':S'
 zstyle ':vcs_info:*' unstagedstr ':U'
-zstyle ':vcs_info:*' enable git hg
+zstyle ':vcs_info:*' enable git hg svn svk bzr cvs
 zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}%c%u|%F{1}%a%F{5}]%f '
+    '%F{5}(%f%s%F{5})―%f%F{5}[%F{2}%b%f%F{6}%c%u%f|%F{1}%a%f%F{5}]%f '
 zstyle ':vcs_info:*' formats       \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}%c%u]%f '
+    '%F{5}(%f%s%F{5})―%f%F{5}[%F{2}%b%f%F{6}%c%u%f%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{3}:%r%f'
 
 # Prompts
 function precmd() { vcs_info }
@@ -29,16 +37,6 @@ function precmd() { vcs_info }
 PROMPT='
 %F{5}→%f %F{2}%~%f ${vcs_info_msg_0_}
 %F{5}→%f '
-
-# Completions
-setopt correct dvorak noclobber
-setopt noalwayslastprompt noautoremoveslash noautomenu
-setopt listtypes listpacked
-setopt completeinword recexact alwaystoend
-unlimit
-
-# Complete commmands after "."
-compctl -c .
 
 # Paths
 export PATH=~/bin:$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
