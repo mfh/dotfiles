@@ -1,33 +1,34 @@
-# ZSH Configuration (update: 20/04/2013)
-# This's bloated, I should use .zshenv too, or maybe oh-my-zsh.
+# ZSH Configuration (update: 28/04/2013)
+
 # Basics
 HISTFILE=~/.histfile
 HISTSIZE=170000
 SAVEHIST=17000
 setopt sharehistory appendhistory extendedhistory histignoredups histverify
-function history-all { history -E 1 }
 setopt autocd autopushd pushdminus pushdsilent pushdtohome pushdignoredups
 setopt extendedglob globdots 
 setopt nobeep ignoreeof
-
-zstyle :compinstall filename '/home/erlang/.zshrc'
+setopt promptsubst
 
 # Load modules
-autoload -U compinit promptinit zcalc zsh-mime-setup
-compinit
-promptinit
-zsh-mime-setup
-autoload zmv
+autoload -Uz compinit promptinit zsh-mime-setup edit-command-line vcs_info
+
+# Setup vcs_info
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr ':S'
+zstyle ':vcs_info:*' unstagedstr ':U'
+zstyle ':vcs_info:*' enable git hg
+zstyle ':vcs_info:*' actionformats \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}%c%u|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}%c%u]%f '
 
 # Prompts
-setopt promptsubst
-function get_pwd() {
-    echo "${PWD/$HOME/~}"
-}
+function precmd() { vcs_info }
 
 PROMPT='
-%F{green}→%f %F{cyan}$(get_pwd)%f
-%F{green}→%f '
+%F{5}→%f %F{2}%~%f ${vcs_info_msg_0_}
+%F{5}→%f '
 
 # Completions
 setopt correct dvorak noclobber
@@ -36,7 +37,7 @@ setopt listtypes listpacked
 setopt completeinword recexact alwaystoend
 unlimit
 
-# Complete commmands after .
+# Complete commmands after "."
 compctl -c .
 
 # Paths
@@ -110,11 +111,10 @@ alias pin='pinfo -m'
 alias t='TZ='Asia/Jakarta' date +%r'
 alias re='reset'
 alias x='exit'
-alias bp='bpython'
-alias http='sudo pyhttp' #or use 'python -m SimpleHTTPServer'
+alias http='sudo pyhttp'    # python -m SimpleHTTPServer
 alias todo='grep '.' /home/erlang/.todo'
 alias vitodo='vi /home/erlang/.todo'
-alias v='/home/erlang/Playground/vim/src/vim'
+alias vi='/home/erlang/Playground/vim/src/vim'
 alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
@@ -127,7 +127,6 @@ cmdfu () {
 
 # Use Vi as main editor
 export EDITOR=vi
-autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 

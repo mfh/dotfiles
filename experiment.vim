@@ -15,8 +15,8 @@ hi Pmenu gui=NONE guifg=NONE guibg=Magenta cterm=NONE ctermfg=NONE ctermbg=201
 hi PmenuSel gui=NONE guifg=NONE guibg=DarkGrey cterm=NONE ctermfg=NONE ctermbg=248
 hi PmenuSbar gui=NONE guifg=NONE guibg=Grey cterm=NONE ctermfg=NONE ctermbg=250
 hi PmenuThumb gui=reverse guifg=NONE guibg=NONE cterm=reverse ctermfg=NONE ctermbg=NONE
-hi CursorColumn gui=NONE guifg=NONE guibg=Grey40 cterm=NONE ctermfg=NONE ctermbg=241
-hi CursorLine gui=NONE guifg=NONE guibg=Grey40 cterm=NONE ctermfg=NONE ctermbg=241
+hi CursorColumn gui=NONE guifg=NONE guibg=Grey40 cterm=NONE ctermfg=NONE ctermbg=237
+hi CursorLine gui=NONE guifg=NONE guibg=Grey40 cterm=NONE ctermfg=NONE ctermbg=237
 hi MatchParen gui=NONE guifg=NONE guibg=DarkCyan cterm=NONE ctermfg=NONE ctermbg=30
 hi TabLineFill gui=NONE guifg=Grey21 guibg=Grey21 cterm=NONE ctermfg=236 ctermbg=236
 hi TabLine gui=NONE guifg=MistyRose3 guibg=Grey21 cterm=NONE ctermfg=181 ctermbg=236
@@ -31,7 +31,7 @@ hi Visual gui=reverse guifg=LightBlue4 guibg=Black cterm=reverse ctermfg=66 cter
 hi VisualNOS gui=underline guifg=fg guibg=bg cterm=underline ctermfg=fg ctermbg=NONE
 hi DiffText gui=NONE guifg=Yellow guibg=LightSkyBlue4 cterm=NONE ctermfg=226 ctermbg=66
 hi Cursor gui=NONE guibg=Lavender guifg=Black cterm=NONE ctermfg=16 ctermbg=255
-hi lCursor gui=NONE guibg=Lavender guifg=Black cterm=NONE ctermfg=16 ctermbg=255
+hi LCursor gui=NONE guibg=Lavender guifg=Black cterm=NONE ctermfg=16 ctermbg=255
 hi Directory gui=NONE guifg=LightGreen guibg=bg cterm=NONE ctermfg=120 ctermbg=NONE
 hi LineNr gui=NONE guifg=LightGrey guibg=bg cterm=NONE ctermfg=LightGrey ctermbg=NONE
 hi MoreMsg gui=NONE guifg=SeaGreen guibg=bg cterm=NONE ctermfg=29 ctermbg=NONE
